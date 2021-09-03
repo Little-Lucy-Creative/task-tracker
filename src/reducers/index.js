@@ -17,6 +17,44 @@ const initialState = {
           task_id: uuidv4(),
           task_editing: false,
         },
+        {
+          task_name: "Buy games",
+          task_completed: false,
+          task_id: uuidv4(),
+          task_editing: false,
+        },
+        {
+          task_name: "Mow lawn",
+          task_completed: false,
+          task_id: uuidv4(),
+          task_editing: false,
+        },
+      ],
+    },
+    {
+      list_id: uuidv4(),
+      list_name: "Second List",
+      list_editing: false,
+      list_color: "red",
+      tasks: [
+        {
+          task_name: "Eat groceries",
+          task_completed: false,
+          task_id: uuidv4(),
+          task_editing: false,
+        },
+        {
+          task_name: "Eat games",
+          task_completed: false,
+          task_id: uuidv4(),
+          task_editing: false,
+        },
+        {
+          task_name: "Eat lawn",
+          task_completed: false,
+          task_id: uuidv4(),
+          task_editing: false,
+        },
       ],
     },
   ],
@@ -25,6 +63,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TASK":
+      console.log('made to add reducer');
       return {
         ...state,
         lists: [
