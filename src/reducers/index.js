@@ -12,7 +12,7 @@ const initialState = {
       list_color: "red",
       tasks: [
         {
-          task_name: "groceries",
+          task_name: "Buy groceries",
           task_completed: false,
           task_id: uuidv4(),
           task_editing: false,
