@@ -8,22 +8,26 @@ const List = (props) => {
 
   const handleChange = (e) => {
     setTaskName(e.target.value);
-    console.log(taskName);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(list.list_id);
-    console.log(taskName);
     props.addTask(list.list_id, taskName);
-    //   store.dispatch(addTask())
   };
-console.log(list);
+console.log('list:', list);
+console.log('list Tasks:', list.tasks);
+console.log('list Names:', list.list_name);
   return (
     <div>
+        {console.log('made to first div')}
+        
       <h3> {list.list_name} </h3>
-      {list.tasks.map((task) => {
-        return <h3 key={task.task_id}> {task.task_name} </h3>;
+      {console.log('made to second div')}
+      {console.log('inside list', list)}
+      {console.log('inside tasks',list.tasks)}
+      {list.tasks.map((task, idx) => {
+          console.log('mapper');
+        return <h3 key={idx}> {task.task_name} </h3>;
       })}
       <div>
         <form onSubmit={onSubmit}>
