@@ -9,7 +9,7 @@ const initialState = {
 			list_id: uuidv4(),
 			list_name: "First List",
 			list_editing: false,
-			list_color: "red",
+			list_color: "green",
 			tasks: [
 				{
 					task_name: "Buy groceries",
@@ -35,7 +35,7 @@ const initialState = {
 			list_id: uuidv4(),
 			list_name: "Second List",
 			list_editing: false,
-			list_color: "red",
+			list_color: "yellow",
 			tasks: [
 				{
 					task_name: "Eat groceries",

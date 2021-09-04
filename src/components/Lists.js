@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+
 import List from "./List";
 import { addList } from "../actions/actions";
-import { v4 as uuidv4 } from "uuid";
 
 const Lists = props => {
 	const [newList, setNewList] = useState("");
@@ -31,7 +32,7 @@ const Lists = props => {
 			{creatingList ? (
 				<form onSubmit={handleSubmit}>
 					<label>
-						Ta-Dooz Name:
+						{/* Ta-Dooz Name: */}
 						<input
 							value={newList}
 							onChange={handleChange}
