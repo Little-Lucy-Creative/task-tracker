@@ -62,6 +62,34 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
+		case "ADD_LIST":
+			return {
+				...state,
+				lists: [...state.lists, action.payload.new_list],
+			};
+		case "DELETE_LIST":
+			return {
+				...state,
+				lists: state.lists.filter(list => {
+					if (list.list_id !== action.payload.list_id) {
+						return list;
+					}
+					return null;
+				}),
+			};
+		case "EDIT_LIST":
+			return {
+				...state,
+				lists: state.lists.map(list => {
+					if (list.list_id === action.payload.list_id) {
+						return {
+							...action.payload.edited_list,
+						};
+					} else {
+						return list;
+					}
+				}),
+			};
 		case "ADD_TASK":
 			return {
 				...state,
@@ -106,7 +134,24 @@ const reducer = (state = initialState, action) => {
 		case "EDIT_TASK":
 			return {
 				...state,
-				// tasks: [...state.tasks, { taskName: action.payload }],
+				lists: state.lists.map(list => {
+					if (list.list_id === action.payload.list_id) {
+						return {
+							...list,
+							tasks: list.tasks.map(task => {
+								if (task.task_id === action.payload.task_id) {
+									return {
+										...action.payload.edited_task,
+									};
+								} else {
+									return task;
+								}
+							}),
+						};
+					} else {
+						return list;
+					}
+				}),
 			};
 		default:
 			return state;
