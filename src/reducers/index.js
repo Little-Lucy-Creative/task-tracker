@@ -65,7 +65,7 @@ const reducer = (state = initialState, action) => {
 		case "ADD_LIST":
 			return {
 				...state,
-				lists: [...state.lists, action.payload.new_list],
+				lists: [...state.lists, action.payload],
 			};
 		case "DELETE_LIST":
 			return {
