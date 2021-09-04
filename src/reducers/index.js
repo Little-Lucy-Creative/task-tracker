@@ -62,6 +62,34 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
+		case "ADD_LIST":
+			return {
+				...state,
+				lists: [...state.lists, action.payload],
+			};
+		case "DELETE_LIST":
+			return {
+				...state,
+				lists: state.lists.filter(list => {
+					if (list.list_id !== action.payload) {
+						return list;
+					}
+					return null;
+				}),
+			};
+		case "EDIT_LIST":
+			return {
+				...state,
+				lists: state.lists.map(list => {
+					if (list.list_id === action.payload.list_id) {
+						return {
+							...action.payload.edited_list,
+						};
+					} else {
+						return list;
+					}
+				}),
+			};
 		case "ADD_TASK":
 			return {
 				...state,
@@ -87,12 +115,43 @@ const reducer = (state = initialState, action) => {
 		case "DELETE_TASK":
 			return {
 				...state,
-				// tasks: state.tasks.filter((item) => item !== action.payload && item),
+				lists: state.lists.map(list => {
+					if (list.list_id === action.payload.list_id) {
+						return {
+							...list,
+							tasks: list.tasks.filter(task => {
+								if (task.task_id !== action.payload.task_id) {
+									return task;
+								}
+								return null;
+							}),
+						};
+					} else {
+						return list;
+					}
+				}),
 			};
 		case "EDIT_TASK":
 			return {
 				...state,
-				// tasks: [...state.tasks, { taskName: action.payload }],
+				lists: state.lists.map(list => {
+					if (list.list_id === action.payload.list_id) {
+						return {
+							...list,
+							tasks: list.tasks.map(task => {
+								if (task.task_id === action.payload.task_id) {
+									return {
+										...action.payload.edited_task,
+									};
+								} else {
+									return task;
+								}
+							}),
+						};
+					} else {
+						return list;
+					}
+				}),
 			};
 		default:
 			return state;
