@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import Task from "./Task";
 import {
 	addTask,
 	editTask,
@@ -17,13 +18,13 @@ const List = props => {
 		setTaskName(e.target.value);
 	};
 
-	const onSubmit = e => {
+	const handleSubmit = e => {
 		e.preventDefault();
 		props.addTask(list.list_id, taskName);
 		setTaskName("");
 	};
 
-	const handleEdit = (list_id, task_id) => {
+	const handleEditList = list_id => {
 		// props.editTask(list_id, task_id, edited_task);
 	};
 
@@ -32,30 +33,16 @@ const List = props => {
 		props.deleteList(list_id);
 	};
 
-	const handleDeleteTask = (list_id, task_id) => {
-		// e.preventDefault();
-		props.deleteTask(list_id, task_id);
-	};
-
 	return (
 		<div>
 			<h3> {list.list_name} </h3>
+			<button onClick={() => handleEditList(list.list_id)}>E</button>
 			<button onClick={() => handleDeleteList(list.list_id)}>X</button>
 			{list.tasks.map((task, idx) => {
-				return (
-					<div key={idx}>
-						<h3> {task.task_name} </h3>
-						<button onClick={() => handleEdit()}>E</button>
-						<button
-							onClick={() => handleDeleteTask(list.list_id, task.task_id)}
-						>
-							X
-						</button>
-					</div>
-				);
+				return <Task key={idx} list={list} task={task} />;
 			})}
 			<div>
-				<form onSubmit={onSubmit}>
+				<form onSubmit={handleSubmit}>
 					<label>
 						Title
 						<input
