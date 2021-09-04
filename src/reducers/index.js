@@ -71,7 +71,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				lists: state.lists.filter(list => {
-					if (list.list_id !== action.payload.list_id) {
+					if (list.list_id !== action.payload) {
 						return list;
 					}
 					return null;
