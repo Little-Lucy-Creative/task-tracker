@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addTask } from "../actions/actions";
+import { addTask, editTask, deleteTask } from "../actions/actions";
 
 const List = props => {
 	const [taskName, setTaskName] = useState("");
@@ -15,15 +15,27 @@ const List = props => {
 		props.addTask(list.list_id, taskName);
 		setTaskName("");
 	};
+
+	const handleEdit = e => {
+		e.preventDefault();
+	};
+
+	const handleDelete = (list_id, task_id) => {
+		// e.preventDefault();
+		props.deleteTask(list_id, task_id);
+	};
+	console.log(list);
 	return (
 		<div>
 			<h3> {list.list_name} </h3>
 			{list.tasks.map((task, idx) => {
 				return (
-					<div>
-						<h3 key={idx}> {task.task_name} </h3>
-						<button>E</button>
-						<button>X</button>
+					<div key={idx}>
+						<h3> {task.task_name} </h3>
+						<button onClick={handleEdit}>E</button>
+						<button onClick={() => handleDelete(list.list_id, task.task_id)}>
+							X
+						</button>
 					</div>
 				);
 			})}
@@ -45,4 +57,4 @@ const List = props => {
 	);
 };
 
-export default connect(null, { addTask })(List);
+export default connect(null, { addTask, editTask, deleteTask })(List);
