@@ -13,6 +13,7 @@ const List = props => {
 	const onSubmit = e => {
 		e.preventDefault();
 		props.addTask(list.list_id, taskName);
+		setTaskName("");
 	};
 	return (
 		<div>
