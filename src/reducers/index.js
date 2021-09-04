@@ -63,7 +63,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case "ADD_TASK":
-			//   console.log('made to reducer!');
 			return {
 				...state,
 				lists: state.lists.map(list => {
