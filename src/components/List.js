@@ -19,7 +19,13 @@ const List = props => {
 		<div>
 			<h3> {list.list_name} </h3>
 			{list.tasks.map((task, idx) => {
-				return <h3 key={idx}> {task.task_name} </h3>;
+				return (
+					<div>
+						<h3 key={idx}> {task.task_name} </h3>
+						<button>E</button>
+						<button>X</button>
+					</div>
+				);
 			})}
 			<div>
 				<form onSubmit={onSubmit}>

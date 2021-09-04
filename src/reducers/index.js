@@ -91,25 +91,12 @@ const reducer = (state = initialState, action) => {
 					if (list.list_id === action.payload.list_id) {
 						return {
 							...list,
-							tasks: state.list.tasks.filter(task => {
-                                	if (task.task_id === action.payload.task_id) {
-
-                                } else {
-                                    return task
-                                }
-                                return {
-
-                                }
-                            })
-                            [
-								...list.tasks,
-								{
-									task_name: action.payload.task_name,
-									task_completed: false,
-									task_id: uuidv4(),
-									task_editing: false,
-								},
-							],
+							tasks: list.tasks.filter(task => {
+								if (task.task_id !== action.payload.task_id) {
+									return task;
+								}
+								return null;
+							}),
 						};
 					} else {
 						return list;

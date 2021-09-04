@@ -6,6 +6,7 @@ export const ADD_TASK = "ADD_TASK";
 export const DELETE_TASK = "DELETE_TASK";
 export const EDIT_TASK = "EDIT_TASK";
 
+// LIST ACTIONS
 export const addList = new_list => {
 	return {
 		type: ADD_LIST,
@@ -22,6 +23,7 @@ export const editList = (list_id, edited_list) => {
 	};
 };
 
+// TASK ACTIONS
 export const addTask = (list_id, task_name) => {
 	return {
 		type: ADD_TASK,
