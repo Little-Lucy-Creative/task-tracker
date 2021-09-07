@@ -5,6 +5,7 @@ export const EDIT_LIST = "EDIT_LIST";
 export const ADD_TASK = "ADD_TASK";
 export const DELETE_TASK = "DELETE_TASK";
 export const EDIT_TASK = "EDIT_TASK";
+export const UPDATE_STATE_FROM_MEMORY = "UPDATE_STATE_FROM_MEMORY";
 
 // LIST ACTIONS
 export const addList = new_list => {
@@ -37,5 +38,13 @@ export const editTask = (list_id, task_id, edited_task) => {
 	return {
 		type: EDIT_TASK,
 		payload: { list_id, task_id, edited_task },
+	};
+};
+
+//STORAGE
+export const updateStateFromMemory = stored_lists => {
+	return {
+		type: UPDATE_STATE_FROM_MEMORY,
+		payload: stored_lists,
 	};
 };
