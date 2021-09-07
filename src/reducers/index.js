@@ -83,7 +83,9 @@ const reducer = (state = initialState, action) => {
 				lists: state.lists.map(list => {
 					if (list.list_id === action.payload.list_id) {
 						return {
-							...action.payload.edited_list,
+							...list,
+							list_editing: !list.list_editing,
+							list_name: action.payload.edited_list,
 						};
 					} else {
 						return list;

@@ -48,8 +48,9 @@ const List = props => {
 		setTaskName("");
 	};
 
-	const handleEditList = list_id => {
-		// props.editTask(list_id, task_id, edited_task);
+	const handleEditList = (list_id, edited_list) => {
+		props.editList(list_id, edited_list);
+		console.log('editing task true');
 	};
 
 	const handleDeleteList = list_id => {
@@ -62,7 +63,7 @@ const List = props => {
 			<div className="list_title">
 				<h3> {list.list_name} </h3>
 				<div className="list_buttons">
-					<button onClick={() => handleEditList(list.list_id)}>E</button>
+					<button onClick={() => handleEditList(list.list_id, list.edited_list )}>E</button>
 					<button onClick={() => handleDeleteList(list.list_id)}>X</button>
 				</div>
 			</div>
