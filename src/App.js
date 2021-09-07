@@ -14,18 +14,16 @@ const AppStylz = styled.div`
 `;
 
 function App(props) {
-	const { lists } = props
+	const { state } = props
 
 	useEffect(()=>{
 		const storedLists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
-		if(storedLists){
-			props.updateStateFromMemory(storedLists) 
-		}
+		storedLists && props.updateStateFromMemory(storedLists)
 	}, [])
 
 	useEffect(() =>{
-		localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lists))
-	}, [lists])
+		localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state))
+	}, [state])
 
 	return (
 		<AppStylz>
@@ -37,7 +35,7 @@ function App(props) {
 
 const mapStateToProps = state => {
 	return {
-		lists: state.lists,
+		state: state
 	};
 };
 

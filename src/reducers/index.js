@@ -153,6 +153,10 @@ const reducer = (state = initialState, action) => {
 					}
 				}),
 			};
+			case "UPDATE_STATE_FROM_MEMORY":
+				return {
+					...action.payload,
+				};
 		default:
 			return state;
 	}
