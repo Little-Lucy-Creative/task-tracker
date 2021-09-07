@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addTask, editTask, deleteTask } from "../actions/actions";
+import { addTask, editTask, deleteTask, toggleCompleteTask } from "../actions/actions";
 import styled from "styled-components";
 
 const TaskStyle = styled.div`
@@ -30,9 +30,13 @@ const Task = props => {
 		props.deleteTask(list_id, task_id);
 	};
 
+	const toggleComplete = (list_id, task_id) => {
+		props.toggleCompleteTask(list_id, task_id);
+	}
+
 	return (
 		<TaskStyle>
-			<h4> {task.task_name} </h4>
+			<h4 className={task.task_completed ? "complete task" : "incomplete task"} onClick={()=> toggleComplete(list.list_id, task.task_id)}> {task.task_name} </h4>
 			<div className="task_buttons">
 				<button onClick={() => handleEditTask(list.list_id, task.task_id)}>
 					E
@@ -49,4 +53,5 @@ export default connect(null, {
 	addTask,
 	editTask,
 	deleteTask,
+	toggleCompleteTask
 })(Task);

@@ -15,7 +15,8 @@ const Lists = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		props.addList({
+		if (newList)
+		{props.addList({
 			list_id: uuidv4(),
 			list_name: newList,
 			list_editing: false,
@@ -23,7 +24,7 @@ const Lists = props => {
 			tasks: [],
 		});
 		setNewList("");
-		setCreatingList(false);
+		setCreatingList(false);}
 	};
 
 	return (
