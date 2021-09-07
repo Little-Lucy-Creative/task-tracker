@@ -31,6 +31,19 @@ h4 {
 	/* color: var(--white); */
 }
 
+.incomplete {
+	text-decoration: none;
+}
+
+.complete {
+	text-decoration: line-through;
+	color: gray;
+}
+
+.task {
+	cursor: pointer;
+}
+
 /* Mobile-First Media Queries */
 @media screen and (max-width: 425px) {
 }

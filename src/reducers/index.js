@@ -153,6 +153,29 @@ const reducer = (state = initialState, action) => {
 					}
 				}),
 			};
+			case "TOGGLE_COMPLETE_TASK":
+			return {
+				...state,
+				lists: state.lists.map(list => {
+					if (list.list_id === action.payload.list_id) {
+						return {
+							...list,
+							tasks: list.tasks.map(task => {
+								if (task.task_id === action.payload.task_id) {
+									return {
+										...task,
+										task_completed: !task.task_completed
+									};
+								} else {
+									return task;
+								}
+							}),
+						};
+					} else {
+						return list;
+					}
+				}),
+			};
 			case "UPDATE_STATE_FROM_MEMORY":
 				return {
 					...action.payload,
