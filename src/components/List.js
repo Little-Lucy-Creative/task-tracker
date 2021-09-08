@@ -31,8 +31,9 @@ const ListStyle = styled.div`
 `;
 
 const List = props => {
-	const [taskName, setTaskName] = useState("");
 	const { list } = props;
+	const [taskName, setTaskName] = useState("");
+	const [editField, setEditField] = useState(list.list_name)
 
 	const handleChange = e => {
 		setTaskName(e.target.value);
@@ -50,7 +51,14 @@ const List = props => {
 
 	const handleEditList = (list_id, edited_list) => {
 		props.editList(list_id, edited_list);
-		console.log('editing task true');
+	};
+
+	const editSubmit = (list_id, edited_list) => {
+		props.editList(list_id, edited_list,)
+
+	}
+	const editHandleChange = e => {
+		setEditField(e.target.value);
 	};
 
 	const handleDeleteList = list_id => {
@@ -61,7 +69,22 @@ const List = props => {
 	return (
 		<ListStyle style={{ backgroundColor: `var(--${list.list_color})` }}>
 			<div className="list_title">
-				<h3> {list.list_name} </h3>
+				{list.list_editing === true && 
+					<div>
+					<form onSubmit={() => editSubmit(list.list_id, editField )}>
+						{/* <label> */}
+						{/* Title */}
+						<input
+							value={editField}
+							onChange={editHandleChange}
+							name="editField"
+							type="text"
+						/>
+						{/* </label> */}
+						<button> Edit Confirm! </button>
+					</form>
+				</div>}
+				<h3> {list.list_name}</h3>
 				<div className="list_buttons">
 					<button onClick={() => handleEditList(list.list_id, list.edited_list )}>E</button>
 					<button onClick={() => handleDeleteList(list.list_id)}>X</button>
