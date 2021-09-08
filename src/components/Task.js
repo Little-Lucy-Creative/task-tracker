@@ -20,7 +20,7 @@ const TaskStyle = styled.div`
 
 const Task = props => {
 	const { list, task } = props;
-	const [editTaskField, setEditTaskField] = useState(task.list_name)
+	const [editTaskField, setEditTaskField] = useState(task.task_name)
 
 
 	const handleEditTask = (list_id, task_id, edited_task) => {
