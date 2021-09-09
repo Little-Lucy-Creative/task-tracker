@@ -18,7 +18,7 @@ export const addList = new_list => {
 export const deleteList = list_id => {
 	return { type: DELETE_LIST, payload: list_id };
 };
-export const editList = (list_id, edited_list) => {
+export const editList = (list_id, edited_list ) => {
 	return {
 		type: EDIT_LIST,
 		payload: { list_id, edited_list },
