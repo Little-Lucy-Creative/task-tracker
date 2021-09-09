@@ -143,7 +143,9 @@ const reducer = (state = initialState, action) => {
 							tasks: list.tasks.map(task => {
 								if (task.task_id === action.payload.task_id) {
 									return {
-										...action.payload.edited_task,
+										...task,
+										task_editing: !task.task_editing,
+										task_name: action.payload.edited_task
 									};
 								} else {
 									return task;
